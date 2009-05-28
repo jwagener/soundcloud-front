@@ -1,0 +1,11 @@
+<h2>Remote HTTP Upload</h2>
+(if your track is too large, you'll maybe run into a timeout error. we'll try to fix that.)
+<% form_tag :controller => :home, :action => :loggedin do %>
+  <%= label_tag 'Track title:' %>
+  <%= text_field_tag(:title, '',{:class => :textfield}) %> 
+  
+  <%= label_tag 'Track URL:' %>
+  <%= text_field_tag(:remote_url, 'http://',{:class => :textfield}) %> 
+
+  <%= submit_tag("upload!",{:class => :commit}) %> 
+<% end %>

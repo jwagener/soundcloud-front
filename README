@@ -1,0 +1,6 @@
+<a href="http://soundcloudfront.com">Soundcloud Front</a> is a small Ruby on Rails demo webapp, to give you an example of how to use the <a href="http://github.com/soundcloud/ruby-api-wrapper">soundcloud-ruby-api-wrapper</a> gem. This application allows a user to authenticate himself via OAuth against Soundcloud. Once the user is authorized, he can post a URL of a sound file, the webapp will then download this file and upload the track to the users Soundcloud account. 
+
+Have a look at the controllers, to find out how it works. 
+login_controller.rb is doing all the OAuth login stuff, while home_controller.rb handles the track creation.
+
+You can find the source repository <a href="http://github.com/jwagener/soundcloud-front">here</a>

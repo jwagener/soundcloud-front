@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  sc_user_id: 1
+  sc_username: MyString
+  access_token: MyString
+  access_token_secret: MyString
+  upload_secret: MyString
+
+two:
+  sc_user_id: 1
+  sc_username: MyString
+  access_token: MyString
+  access_token_secret: MyString
+  upload_secret: MyString

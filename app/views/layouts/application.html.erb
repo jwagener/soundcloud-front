@@ -1,0 +1,33 @@
+<html>
+<head>
+  <title>Soundcloud Front</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+
+</head>
+<body>
+<div class="container">
+<div class="loginHeader">
+  <% if @user.nil? %>
+    <div class="loggedInAs"></div>
+    <div class="loginAction"><a href="/login/redirect">login</a></div>
+
+  <% else %>
+    <div class="loggedInAs">Hej, <%=h @user.sc_username %>!</div>
+    <div class="loginAction"><a href="/logout">logout</a></div>  
+  <% end %>
+</div>
+<h1 class="header">Soundcloud Front</h1>
+<% for name in [:notice, :warning, :message, :error] %>
+  <% if flash[name] %>
+    <div class="feedback">
+      <%= "<div id=\"#{name}\">#{flash[name]}</div>" %>
+    </div>
+  <% end %>
+<% end %>
+<div class="body">
+<%= yield %>
+</div>
+
+</div>
+</body>
+</html>

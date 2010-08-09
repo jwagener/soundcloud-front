@@ -1,5 +1,5 @@
 oauth
-multipart
+jwagener-multipart-post
 activeresource
 activesupport
 oauth-active-resource --version '>= 0.4.6'

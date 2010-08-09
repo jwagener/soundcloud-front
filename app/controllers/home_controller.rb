@@ -44,9 +44,7 @@ class HomeController < ApplicationController
       track.sharing = "private"
       track.asset_data = file
       track.save
-      
-      track.reload
-      
+            
       flash[:notice] = "Your track was uploaded! You can find it <a target=\"_blank\" href=\"#{track.permalink_url}\">here</a>."
     end     
     

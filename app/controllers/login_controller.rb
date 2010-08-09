@@ -6,10 +6,7 @@ class LoginController < ApplicationController
   # this will get a oauth request token from Soundcloud and 
   # will redirect the user to the Soundcloud authorize page
   # it stores request token and secret in the session to remember it, when he returns to the callback page
-  
-  # Insert your consumer key and secret here:  
-  $sc_consumer = Soundcloud.consumer('YOUR_CONSUMER_KEY','YOUR_CONSUMER_SECRET')
-  
+
   def redirect
     callback_url = url_for :action => :callback
     sc_request_token = $sc_consumer.get_request_token(:oauth_callback => callback_url)

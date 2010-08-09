@@ -2,5 +2,5 @@ oauth
 multipart
 activeresource
 activesupport
-jwagener-oauth-active-resource --version '>= 0.1.7' --source gems.github.com
-soundcloud-ruby-api-wrapper --version '>= 0.1.8' --source gems.github.com
+jwagener-oauth-active-resource --version '>= 0.4.6'
+soundcloud-ruby-api-wrapper --version '>= 0.4.8'

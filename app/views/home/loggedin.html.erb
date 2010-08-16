@@ -29,7 +29,7 @@
     <% end %>
   <% end %>
   </ul>
-  <% form_tag :controller => :home, :action => :loggedin,  do %>
+  <% form_tag(:controller => :home, :action => :loggedin) do %>
     <%= submit_tag("Refresh",{:class => :commit}) %>
   <% end %>  
   </p>

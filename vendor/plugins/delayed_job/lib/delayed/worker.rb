@@ -166,8 +166,7 @@ module Delayed
     def handle_failed_job(job, error)
       job.last_error = error.message + "\n" + error.backtrace.join("\n")
       
-      # when we cancel, we really should remove the DJ as well, or else we'll eventually grind to a halt
-      id = job.handler[/ id: (\d+)/, 1]
+      id = job.handler[/ id: "(\d+)"/, 1] #This will only work on Heroku.  To test locally, remove the quotes.
       
       if u = UploadJob.find(id)
         u.update_attributes(:state => 'Failed', :error_message => "Error: " + error.message)

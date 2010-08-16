@@ -1,5 +1,4 @@
 <h2>Remote HTTP Upload</h2>
-(if your track is too large, you'll maybe run into a timeout error. we'll try to fix that.)
 <% form_tag :controller => :home, :action => :loggedin do %>
   <%= label_tag 'Track title:' %>
   <%= text_field_tag(:title, '',{:class => :textfield}) %> 
@@ -7,5 +6,31 @@
   <%= label_tag 'Track URL:' %>
   <%= text_field_tag(:remote_url, 'http://',{:class => :textfield}) %> 
 
-  <%= submit_tag("upload!",{:class => :commit}) %> 
+  <%= submit_tag("Upload!",{:class => :commit}) %> 
+<% end %>
+
+<% if @unfinished_jobs && @unfinished_jobs.empty? == false %>
+  <br/>
+  <p><hr/>
+  Here's all your tracks!</br>
+  (You can cancel or try again if they've failed.)</p>
+  <p><ul>
+  <% @unfinished_jobs.each do |job| %>
+    <li><%= text_field_tag(:url, "#{job.state}:  #{job.file_url}",{:class => :textfield, :readonly => 'readonly'}) %></li>
+    <% if job.error_message %>
+      <%= h job.error_message %>
+    <% end %>
+   <% if job.state == 'Failed' %>
+      <% form_tag :controller => :home, :action => :loggedin, :params => {:job => job} do %>
+        <%= submit_tag("Try Again!",{:class => :commit}) %> 
+        <%= submit_tag("Cancel!",{:class => :commit}) %>
+      <% end %>
+          <br/>
+    <% end %>
+  <% end %>
+  </ul>
+  <% form_tag :controller => :home, :action => :loggedin,  do %>
+    <%= submit_tag("Refresh",{:class => :commit}) %>
+  <% end %>  
+  </p>
 <% end %>

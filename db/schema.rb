@@ -9,16 +9,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090504232734) do
+ActiveRecord::Schema.define(:version => 20100810102949) do
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0, :null => false
+    t.integer  "attempts",   :default => 0, :null => false
+    t.text     "handler",                   :null => false
+    t.text     "last_error",                :null => false
+    t.datetime "run_at",                    :null => false
+    t.datetime "locked_at",                 :null => false
+    t.datetime "failed_at",                 :null => false
+    t.text     "locked_by",                 :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "upload_jobs", :force => true do |t|
+    t.integer  "user_id",       :null => false
+    t.string   "file_url",      :null => false
+    t.text     "params",        :null => false
+    t.string   "state",         :null => false
+    t.string   "error_message", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "users", :force => true do |t|
-    t.integer  "sc_user_id"
-    t.string   "sc_username"
-    t.string   "access_token"
-    t.string   "access_token_secret"
-    t.string   "upload_secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "sc_user_id",          :null => false
+    t.string   "sc_username",         :null => false
+    t.string   "access_token",        :null => false
+    t.string   "access_token_secret", :null => false
+    t.string   "upload_secret",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
 end

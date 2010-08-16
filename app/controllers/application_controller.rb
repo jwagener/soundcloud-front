@@ -10,5 +10,5 @@ class ApplicationController < ActionController::Base
 
   consumer_token = ENV['SC_CONSUMER_TOKEN']
   consumer_secret = ENV['SC_CONSUMER_SECRET']
-  $sc_consumer = Soundcloud.consumer(consumer_token,consumer_secret)  
+  $sc_consumer = Soundcloud.consumer(consumer_token, consumer_secret)
 end

@@ -166,7 +166,7 @@ module Delayed
     def handle_failed_job(job, error)
       job.last_error = error.message + "\n" + error.backtrace.join("\n")
       
-      id = job.handler[/ id: "(\d+)"/, 1] #This will only work on Heroku.  To test locally, remove the quotes.
+      id = job.handler[/ id: "(\d+)"/, 1] #This will only work on Heroku.  To test locally, remove the quotes around "(\d+)".
       
       if u = UploadJob.find(id)
         u.update_attributes(:state => 'Failed', :error_message => "Error: " + error.message)

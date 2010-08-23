@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'uri'
+require 'pathname'
 gem 'soundcloud-ruby-api-wrapper'
 require 'soundcloud'
 
@@ -9,7 +10,8 @@ class UploadJob < ActiveRecord::Base
   
   module OverwritePath
     def path
-      'soundcloudfront.temp'
+      path = self.base_uri.path
+      Pathname.new(path).basename.to_s
     end
   end
   
@@ -23,8 +25,8 @@ class UploadJob < ActiveRecord::Base
 
     # use open from 'open-uri' gem to download the file
     update_attributes!(:state => 'Downloading')
-    file = open file_url
-    file.extend OverwritePath
+    temp_file = open file_url
+    temp_file.extend OverwritePath
     
     update_attributes!(:state => 'Uploading')
     
@@ -32,10 +34,10 @@ class UploadJob < ActiveRecord::Base
     track.title       = params[:title]
     track.sharing     = "private"
     track.tag_list    = "SoundCloudFront"
-    track.asset_data  = file
+    track.asset_data  = temp_file
     track.save
     
     update_attributes!(:state => 'Finished', :error_message => nil)
-    logger.warn("upload job finished #{id}")  
+    logger.warn("upload job finished #{id}")
   end
 end
